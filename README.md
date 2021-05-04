@@ -1,3 +1,3 @@
 # quizy
 
-- [ ] asd
+- [v] asd
