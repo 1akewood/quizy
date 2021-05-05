@@ -106,10 +106,11 @@ require_once "config.php";
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.4em" width="1.4em" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"></path>
             </svg>
-            &nbsp;트랜딩
+            &nbsp;검색 결과
         </h6>
         <?php
-        $sql = "select * from articles;";
+        $keyword = "\"%".$_POST['keyword']."%\"";
+        $sql = "select * from articles where description like".$keyword." or content like ".$keyword;
 
         $smtm = $pdo->query($sql);
         foreach ($smtm as $row){
@@ -130,118 +131,8 @@ require_once "config.php";
             <?php
         }
         ?>
-
-
-        <!--<div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">2021 정보처리기사 필기 2회 예상문제</strong>
-                사람들의 릴케 나의 하나에 그리고 내 계십니다. 북간도에 벌레는 내린 이런 책상을 언덕 자랑처럼 소학교 버리었습니다.
-            </p>
-        </div>
-        <div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">제 430회 정규토익 시험 기출문제</strong>
-                나는 별 둘 이름을 나의 가슴속에 밤을 그리고 계집애들의 있습니다. 아스라히 가난한 이름과, 나의 노새, 둘 북간도에 별을 있습니다. 걱정도 자랑처럼 내 까닭입니다.
-            </p>
-        </div>
-        <div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">테스트</strong>
-                계절이 슬퍼하는 소학교 추억과 이름자 까닭입니다. 이런 경, 많은 듯합니다. 했던 경, 가난한 별 못 어머니, 계집애들의 거외다.
-            </p>
-        </div>-->
-        <small class="d-block text-right mt-3">
-            <a href="./all.php">더 보기</a>
-        </small>
     </div>
 
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">
-            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.4em" width="1.4em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path>
-            </svg>
-            &nbsp;최신
-        </h6>
-        <?php
-        $sql = "select username from users;";
-
-        $smtm = $pdo->query($sql);
-        foreach ($smtm as $row){
-            ?>
-            <div id="index-articles" class="media text-muted pt-3">
-                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">
-                            <?php
-                            echo $row['username'];
-                            ?>
-                        </strong>
-                        <a class="text-dark" onclick="return false" style="cursor:default;">
-                            <svg width="13" height="13" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                            </svg>
-                            0
-                        </a>
-                    </div>
-                    <span class="d-block">@rnesw</span>
-                </div>
-            </div>
-            <?php
-        }
-        ?>
-        <!--<div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">강상우</strong>
-                    <a class="text-dark" onclick="return false" style="cursor:default;">
-                        <svg width="13" height="13" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                        </svg>
-                        0
-                    </a>
-                </div>
-                <span class="d-block">@rnesw</span>
-            </div>
-        </div>
-        <div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">오현민</strong>
-                    <a class="text-dark" onclick="return false" style="cursor:default;">
-                        <svg width="13" height="13" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                        </svg>
-                        0
-                    </a>
-                </div>
-                <span class="d-block">@odengmin</span>
-            </div>
-        </div>
-        <div id="index-articles" class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">최지현</strong>
-                    <a class="text-dark" onclick="return false" style="cursor:default;">
-                        <svg width="13" height="13" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                        </svg>
-                        0
-                    </a>
-                </div>
-                <span class="d-block">@91.3mm</span>
-            </div>
-        </div>-->
-        <small class="d-block text-right mt-3">
-            <a href="./all.php">더 보기</a>
-        </small>
-    </div>
 </main>
 
 <!-- Bootstrap core JavaScript
@@ -263,3 +154,4 @@ require_once "config.php";
 </script>
 </body>
 </html>
+
