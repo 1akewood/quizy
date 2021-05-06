@@ -23,7 +23,7 @@ require_once "config.php";
 <body class="bg-light">
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
     <img id="logo" class="mr-3" src="../que.svg" onClick="window.location.reload()" alt="" width="24" height="24">
-    <a id="logo" class="navbar-brand" onClick="window.location.reload()">Quizy</a>
+    <a id="logo" class="navbar-brand" onClick="window.location.reload()" href="index.php">Quizy</a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
