@@ -70,9 +70,7 @@
                         '</div>');
                     $appendpoint = $(this);
                     $removepoint = document.querySelector('.checkbox').parentElement;
-                    console.log($removepoint = document.querySelector('.checkbox').parentElement);
                     $(this).parent().parent().prev().after('<div><input type="button" value="보기 추가" class="checkbox-button" onclick="appendchoice($appendpoint)"> <input type="button" value="보기 삭제" class="checkbox-button" onclick="removechoice($removepoint)"/></div>');
-
                 }else if($(this).text().trim() === "약술형"){
                     $(this).parent().parent().prev().after('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="약술형 정답" required>');
                 }else if($(this).text().trim() === "객관식"){
