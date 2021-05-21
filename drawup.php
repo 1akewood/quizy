@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div id="quiz" class="card align-middle" style="width:40rem; border-radius:20px;">
+<div id="quiz" class="card align-middle" style="width:40rem; border-radius:20px; margin-top: 50px; margin-bottom: 50px">
     <div class="card-title" style="margin-top:30px;">
         <h6 class="card-title text-right mr-3" style="color:#113366; display: inline; float: right" onclick="removequiz()">X</h6>
         <h6 class="card-title text-right mr-3" style="color:#113366; display: inline; float: right" onclick="appendquiz($quiz)">+</h6>
@@ -127,7 +127,7 @@
     }
     function appendquiz($quiz){
         $target = $quiz.clone();
-        $('#quiz').after($target);
+        $('#quiz').before($target);
         dropdownfunc($target);
     }
     function removequiz(){
