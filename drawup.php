@@ -93,7 +93,7 @@
     function appendchoice($target){
         if($target !=null){
             if($target.appendNum <5){
-                $target.find('#buttons').prepend('<div class="radio-answer" style="margin-bottom: 10px">' +
+                $target.find('#buttons').before('<div class="radio-answer" style="margin-bottom: 10px">' +
                     '<input type="radio" name="radio" value=""/>' +
                     '<input type="text">' +
                     '</div>');
@@ -101,7 +101,7 @@
             }
         }else {
             if ($appendNum < 5) {
-                $('#radio-addbutton').before('<div class="radio-answer" style="margin-bottom: 10px">' +
+                $('#buttons').before('<div class="radio-answer" style="margin-bottom: 10px">' +
                     '<input type="radio" name="radio" value=""/>' +
                     '<input type="text">' +
                     '</div>');
@@ -136,7 +136,7 @@
 
     function dropdownfunc($target){
         $target.appendNum =1;
-        $target.find('.dropdown-menu a').on('click', function () {
+        $target.find('.btn-group').find('.dropdown-menu a').on('click', function () {
             let temp = $target.find('#quiz-es-type').text().trim();
             $target.find('.answer').empty();
             if($(this).text().trim() === "체크박스") {
