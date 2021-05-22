@@ -66,22 +66,23 @@
             var $dropdown = $(dropdown);
             $dropdown.find('.dropdown-menu a').on('click', function () {
                 let temp = $dropdown.find('#quiz-es-type').text().trim();
-                $('.answer').empty();
+                $answer = $(document).find($('.answer')[$('.answer').length-1]);
+                $answer.empty();
                 if($(this).text().trim() === "체크박스") {
-                    $('.answer').append('<p>checkbox</p>');
+                    $answer.append('<p>checkbox</p>');
                 }else if($(this).text().trim() === "약술형"){
-                    $('.answer').append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="약술형 정답" required>');
+                    $answer.append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="약술형 정답" required>');
                 }else if($(this).text().trim() === "객관식"){
-                    $('.answer').append('<div class="radio-answer" style="margin-bottom: 10px">' +
+                    $answer.append('<div class="radio-answer" style="margin-bottom: 10px">' +
                         '<input type="radio"  name="radio" value=""/>' +
                         '<input type="text">'+
                         '</div>');
                     $appendpoint = $(this);
                     $removepoint = document.querySelector('.radio-answer').parentElement;
-                    $('.answer').append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice(null)"/></div>');
+                    $answer.append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice(null)"/></div>');
 
                 }else{
-                    $('.answer').append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="서술형 정답" required>');
+                    $answer.append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="서술형 정답" required>');
                 }
                 $dropdown.find('#quiz-es-type').text($(this).text());
                 $(this).text(temp);
