@@ -156,7 +156,6 @@
             $target.find('#quiz-es-type').text($(this).text());
             $(this).text(temp);
         });
-
     }
 
 
