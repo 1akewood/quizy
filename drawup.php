@@ -69,23 +69,22 @@
                 $answer = $(document).find($('.answer')[$('.answer').length-1]);
                 $answer.empty();
                 if($(this).text().trim() === "체크박스") {
-                    $answer.append('<p>checkbox</p>');
                     $answer.append('<div class="checkbox-answer" style="margin-bottom: 10px">' +
                         '<input type="checkbox"  name="checkbox" value=""/>' +
-                        '<input type="text">'+
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">'+
                         '</div>');
-                    $answer.append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice(null)"/></div>');
+                    $answer.append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" class="btn btn-secondary" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" class="btn btn-secondary" onclick="removechoice(null)"/></div>');
 
                 }else if($(this).text().trim() === "약술형"){
                     $answer.append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="약술형 정답" required>');
                 }else if($(this).text().trim() === "객관식"){
                     $answer.append('<div class="radio-answer" style="margin-bottom: 10px">' +
                         '<input type="radio"  name="radio" value=""/>' +
-                        '<input type="text">'+
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">'+
                         '</div>');
                     $appendpoint = $(this);
                     $removepoint = document.querySelector('.radio-answer').parentElement;
-                    $answer.append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice(null)"/></div>');
+                    $answer.append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" class="btn btn-secondary" onclick="appendchoice(null)"> <input type="button" value="보기 삭제" class="btn btn-secondary" onclick="removechoice(null)"/></div>');
 
                 }else{
                     $answer.append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="서술형 정답" required>');
@@ -103,7 +102,7 @@
                 if($target.appendNum <5){
                     $target.find('#buttons').before('<div class="radio-answer" style="margin-bottom: 10px">' +
                         '<input type="radio" name="radio" value=""/>' +
-                        '<input type="text">' +
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">' +
                         '</div>');
                     $target.appendNum++;
                 }
@@ -111,7 +110,7 @@
                 if($target.appendNum <5){
                     $target.find('#buttons').before('<div class="checkbox-answer" style="margin-bottom: 10px">' +
                         '<input type="checkbox"  name="checkbox" value=""/>' +
-                        '<input type="text">' +
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">' +
                         '</div>');
                     $target.appendNum++;
                 }
@@ -121,7 +120,7 @@
                 if ($appendNum < 5) {
                     $('#buttons').before('<div class="radio-answer" style="margin-bottom: 10px">' +
                         '<input type="radio" name="radio" value=""/>' +
-                        '<input type="text">' +
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">' +
                         '</div>');
                     $appendNum++;
                 }
@@ -129,7 +128,7 @@
                 if ($appendNum < 5) {
                     $('#buttons').before('<div class="checkbox-answer" style="margin-bottom: 10px">' +
                         '<input type="checkbox"  name="checkbox" value=""/>' +
-                        '<input type="text">' +
+                        '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">' +
                         '</div>');
                     $appendNum++;
                 }
@@ -184,21 +183,20 @@
             let temp = $target.find('#quiz-es-type').text().trim();
             $target.find('.answer').empty();
             if($(this).text().trim() === "체크박스") {
-                $target.find('.answer').append('<p>checkbox</p>');
                 $target.find('.answer').append('<div class="checkbox-answer" style="margin-bottom: 10px">' +
                     '<input type="checkbox"  name="checkbox" value=""/>' +
-                    '<input type="text">'+
+                    '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">'+
                     '</div>');
-                $target.find('.answer').append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice($target)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice($target)"/></div>');
+                $target.find('.answer').append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" class="btn btn-secondary" onclick="appendchoice($target)"> <input type="button" value="보기 삭제" class="btn btn-secondary" onclick="removechoice($target)"/></div>');
 
             }else if($(this).text().trim() === "약술형"){
                 $target.find('.answer').append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="약술형 정답" required>');
             }else if($(this).text().trim() === "객관식"){
                 $target.find('.answer').prepend('<div class="radio-answer" style="margin-bottom: 10px">' +
                     '<input type="radio"  name="radio" value=""/>' +
-                    '<input type="text">'+
+                    '<input type="text" class="form-control" style="width: 300px; display: inline-block; margin-left: 10px;">'+
                     '</div>');
-                $target.find('.answer').append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" id="radio-addbutton" onclick="appendchoice($target)"> <input type="button" value="보기 삭제" id="radio-removebutton" onclick="removechoice($target)"/></div>');
+                $target.find('.answer').append('<div id="buttons" style="margin-bottom: 10px"><input type="button" value="보기 추가" class="btn btn-secondary" onclick="appendchoice($target)"> <input type="button" value="보기 삭제" class="btn btn-secondary" onclick="removechoice($target)"/></div>');
 
             }else{
                 $target.find('.answer').append('<input type="text" id="quiz-es-awnser" class="form-control d-inline" placeholder="서술형 정답" required>');
