@@ -19,8 +19,56 @@ require_once "config.php";
 
     <!-- Custom styles for this template -->
     <link href="index.css" rel="stylesheet">
+    <style>
+        #load {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            text-align: center;
+        }
+        #load>img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            -moz-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            -o-transform: translate(-50%,-50%);
+            z-index: 100;
+        }
+        .btn-like .heart-shape {
+            display: inline;
+            color: red;
+        }
+        .btn-like {
+            border: none;
+            background-color: inherit;
+        }
+    </style>
+    <link rel="stylesheet" href="index.js">
+    <script>
+        function heart(target) {
+            $title = target.parentNode.querySelector('strong').textContent.trim();
+            $sql = "select * from articles where description = "+$title+";";
+//            $smtm = $pdo->query($sql);
+//            if ($_SESSION['username'] != $smtm['username'])
+//            $sql = "update articles set heart = heart + 1 where description = $title;";
+//            $pdo->query();
+        }
+
+        $(window).on('load',function (){
+            $('#load').hide();
+        });
+    </script>
 </head>
 <body class="bg-light">
+<div id="load" style="display: none"><img src="https://tistory4.daumcdn.net/tistory/2525279/skin/images/loading.gif" alt="loading"></div>
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
     <img id="logo" class="mr-3" src="../que.svg" onClick="window.location.reload()" alt="" width="24" height="24">
     <a id="logo" class="navbar-brand" onClick="window.location.reload()" href="index.php">Quizy</a>
@@ -109,10 +157,13 @@ require_once "config.php";
             &nbsp;트랜딩
         </h6>
         <?php
-        $sql = "select * from articles;";
+        $sql = "select * from articles order by heart desc;";
 
         $smtm = $pdo->query($sql);
+        $count = 0;
         foreach ($smtm as $row){
+            if($count == 5)
+                break;
             ?>
             <div id="index-articles" class="media text-muted pt-3">
                 <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
@@ -125,9 +176,15 @@ require_once "config.php";
                     <?php
                     echo $row['content'];
                     ?>
+                <form action="./heart.php" method="post">
+                    <button type="submit" class="btn-like"><input type="hidden" name="article_id" value="<?=$row['article_id']?>">
+                        <span class="heart-shape">♡</span> <span class="like-count"><?=$row['heart']?></span>
+                    </button>
+                </form>
                 </p>
             </div>
             <?php
+            $count++;
         }
         ?>
 
@@ -166,31 +223,29 @@ require_once "config.php";
             &nbsp;최신
         </h6>
         <?php
-        $sql = "select username from users;";
+        $sql = "select * from articles order by article_id desc;";
 
         $smtm = $pdo->query($sql);
+        $count = 0;
         foreach ($smtm as $row){
+            if($count ==5)
+                break;
             ?>
             <div id="index-articles" class="media text-muted pt-3">
                 <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">
-                            <?php
-                            echo $row['username'];
-                            ?>
-                        </strong>
-                        <a class="text-dark" onclick="return false" style="cursor:default;">
-                            <svg width="13" height="13" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                            </svg>
-                            0
-                        </a>
-                    </div>
-                    <span class="d-block">@rnesw</span>
-                </div>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">
+                        <?php
+                        echo $row['description'];
+                        ?>
+                    </strong>
+                    <?php
+                    echo $row['content'];
+                    ?>
+                </p>
             </div>
             <?php
+            $count++;
         }
         ?>
         <!--<div id="index-articles" class="media text-muted pt-3">
@@ -242,6 +297,7 @@ require_once "config.php";
             <a href="./all.php">더 보기</a>
         </small>
     </div>
+    <div id="loading"></div>
 </main>
 
 <!-- Bootstrap core JavaScript
