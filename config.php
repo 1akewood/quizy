@@ -1,7 +1,7 @@
 <?php
 /* Database credentials. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'quizy.cluster-custom-cu0vlp8fz14q.us-east-2.rds.amazonaws.com');
+define('DB_SERVER', 'quizy-instance-1.cu0vlp8fz14q.us-east-2.rds.amazonaws.com');
 define('DB_USERNAME', 'admin');
 define('DB_PASSWORD', 'kang199801!');
 define('DB_NAME', 'quizy');

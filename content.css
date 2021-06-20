@@ -1,0 +1,9 @@
+.circled{
+    width: fit-content;
+}
+li{
+    list-style: none;
+}
+#buttons{
+    display: inline-block;
+}
